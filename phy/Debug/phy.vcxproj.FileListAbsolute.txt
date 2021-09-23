@@ -1,1 +1,2 @@
 C:\Users\uživatel2.0\source\repos\phy\Debug\phy.exe
+D:\phy\Debug\phy.exe

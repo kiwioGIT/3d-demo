@@ -7,14 +7,28 @@ struct vec3d
 	float posx;
 	float posy;
 	float posz;
+	bool should_draw = true;
+	void rotatedxz(float rotation) {
+		float distance = sqrt(posx * posx + posz * posz);
+		posx = cos(rotation) * distance;
+		posz = sin(rotation) * distance;
+	}
+
+	float distance2zero() {
+		return sqrt(posx * posx + posz * posz);
+	}
+	float get_rotation() {
+		return acos(posx / sqrt(posx * posx + posz * posz));
+	}
 };
 
 class Graph : public olcConsoleGameEngine {
 	
 	vec3d cubepos;
-
-	
-	float near_view = 200;
+	float camera_rotation = 0;
+	float camera_vertical_rotation = 0;
+	vec3d camera_pos = {0,0,0};
+	float near_view = 400;
 	public: 
 		Graph()
 		{}
@@ -28,50 +42,102 @@ class Graph : public olcConsoleGameEngine {
 		}
 
 		virtual bool OnUserUpdate(float fElapsedTime) {
-			if (m_keys[VK_LEFT].bHeld) {
-				cubepos.posx += fElapsedTime * -100;
+			if (m_keys['A'].bHeld) {
+				camera_pos.posz += cos(camera_rotation - 1.57079633) * 10;
+				camera_pos.posx += sin(camera_rotation - 1.57079633) * 10;
 			}
-			if (m_keys[VK_RIGHT].bHeld) {
-				cubepos.posx += fElapsedTime * 100;
+			if (m_keys['D'].bHeld) {
+				camera_pos.posz += cos(camera_rotation + 1.57079633) * 10;
+				camera_pos.posx += sin(camera_rotation + 1.57079633) * 10;
+			}
+			if (m_keys['W'].bHeld) {
+				camera_pos.posz += cos(camera_rotation) * 10;
+				camera_pos.posx += sin(camera_rotation) * 10;
+			}
+			if (m_keys['S'].bHeld) {
+				camera_pos.posz += cos(camera_rotation) * -10;
+				camera_pos.posx += sin(camera_rotation) * -10;
+			}
+			if (m_keys['Q'].bHeld) {
+				camera_pos.posy -= 10;
+			}
+			if (m_keys['E'].bHeld) {
+				camera_pos.posy -= -10;
 			}
 			if (m_keys[VK_UP].bHeld) {
-				cubepos.posy += fElapsedTime * -100;
+				//camera_vertical_rotation += fElapsedTime * -2;
 			}
 			if (m_keys[VK_DOWN].bHeld) {
-				cubepos.posy += fElapsedTime * 100;
+				//camera_vertical_rotation += fElapsedTime * 2;
 			}
-			if (m_keys[VK_F12].bHeld) {
-				cubepos.posz += fElapsedTime * 100;
+			if (m_keys[VK_LEFT].bHeld) {
+				camera_rotation += fElapsedTime * -2;
 			}
-			if (m_keys[VK_F11].bHeld) {
-				cubepos.posz += fElapsedTime * -100;
+			if (m_keys[VK_RIGHT].bHeld) {
+				camera_rotation += fElapsedTime * 2;
 			}
 			Fill(0, 0, ScreenWidth(), ScreenHeight(),' ');
 
 			DrawCube(30, cubepos.posz, cubepos.posx, cubepos.posy);
-
+			DrawCube(30, cubepos.posz, cubepos.posx+30, cubepos.posy);
 
 			return true;
 		}
 
 		void DrawPointVec(vec3d pos) {
-			float scale = pos.posz / near_view;
-			float new_x_pos = pos.posx/scale;
-			float new_y_pos = pos.posy/scale;
-			Draw((int)new_x_pos + (ScreenWidth() / 2), (int)new_y_pos + (ScreenHeight() / 2), PIXEL_SOLID, FG_RED);
+			vec3d p = get_point_draw_position(pos);
+			Draw((int)p.posx + (ScreenWidth() / 2), (int)p.posy + (ScreenHeight() / 2), PIXEL_SOLID, FG_RED);
+		}
+
+
+		vec3d get_point_draw_position(vec3d origin) {
+			vec3d superigin = origin;
+			origin.posx -= camera_pos.posx;
+			origin.posy -= camera_pos.posy;
+			origin.posz -= camera_pos.posz;
+			int negus = (2* (superigin.posz > camera_pos.posz))-1;
+			origin.posx *= negus;
+			origin.posy *= negus;
+			origin.posz *= negus;
+			float lon = sqrt(pow(origin.posx, 2) + pow(origin.posz, 2));
+			float angle = origin.get_rotation() + camera_rotation;
+			
+			vec3d draw_test = origin;
+			draw_test.rotatedxz(draw_test.get_rotation() + camera_rotation);
+			vec3d cam_draw_test = camera_pos;
+			cam_draw_test.rotatedxz(draw_test.get_rotation() + camera_rotation);
+			if (draw_test.posz * negus < 0) {
+				origin.should_draw = false;
+				return origin;
+			}
+
+			float lon_v = sqrt(pow(origin.posy, 2) + pow(origin.posx, 2) + pow(origin.posz, 2));
+			float vertical_angle = atan(origin.posy/ sqrt(pow(origin.posx, 2) + pow(origin.posz, 2)));
+			
+			vertical_angle += camera_vertical_rotation;
+			
+			origin.posy = sin(vertical_angle) * lon_v;
+			float off_value = cos(vertical_angle) * lon_v;
+			origin.posx = cos(angle) * off_value;
+			origin.posz = sin(angle) * off_value;
+			float scale = origin.posz / near_view;
+			origin.posz = origin.posz / scale;
+			origin.posx = origin.posx / scale;
+			origin.posy = origin.posy / scale;
+			return origin;
+		}
+
+		float lerp(float a, float b, float f)
+		{
+			return (a * (1.0 - f)) + (b * f);
 		}
 
 		void DrawLineVec(vec3d pos1, vec3d pos2) {
-			float scale = pos1.posz / near_view;
-
-			float new_x_pos1 = pos1.posx / scale;
-			float new_y_pos1 = pos1.posy / scale;
-
-			float scale2 = pos2.posz / near_view;
-
-			float new_x_pos2 = pos2.posx / scale2;
-			float new_y_pos2 = pos2.posy / scale2;
-			DrawLine((int)new_x_pos1 + (ScreenWidth() / 2), (int)new_y_pos1 + (ScreenHeight() / 2), (int)new_x_pos2 + (ScreenWidth() / 2), (int)new_y_pos2 + (ScreenHeight() / 2), PIXEL_SOLID, FG_WHITE);
+			pos1 = get_point_draw_position(pos1);
+			pos2 = get_point_draw_position(pos2);
+			if (pos1.should_draw && pos2.should_draw) {
+				DrawLine((int)pos1.posx + (ScreenWidth() / 2), (int)pos1.posy + (ScreenHeight() / 2), (int)pos2.posx + (ScreenWidth() / 2), (int)pos2.posy + (ScreenHeight() / 2), PIXEL_SOLID, FG_WHITE);
+			}
 		}
 
 		void DrawCube(float cube_size, float obj_dist, float cubex, float cubey) {
@@ -146,9 +212,11 @@ class Graph : public olcConsoleGameEngine {
 		}
 };
 
+
+
 int main() {
 	Graph demo;
-	demo.ConstructConsole(400,400,2,2);
+	demo.ConstructConsole(600,400,2,2);
 	demo.Start();
 	
 	return 0;

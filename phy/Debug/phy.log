@@ -1,2 +1,10 @@
 ﻿  Source.cpp
-  phy.vcxproj -> C:\Users\uživatel2.0\source\repos\phy\Debug\phy.exe
+D:\phy\Source.cpp(46,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(47,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(50,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(51,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(102,14): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(114,16): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(115,25): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(132,27): warning C4244: return: double se převádí na float; může dojít ke ztrátě dat.
+  phy.vcxproj -> D:\phy\Debug\phy.exe
