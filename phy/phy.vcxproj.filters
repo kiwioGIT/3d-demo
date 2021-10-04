@@ -24,4 +24,9 @@
       <Filter>Zdrojové soubory</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="icos.txt">
+      <Filter>Zdrojové soubory</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

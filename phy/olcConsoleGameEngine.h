@@ -536,6 +536,7 @@ public:
 	// https://www.avrfreaks.net/sites/default/files/triangles.c
 	void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
 	{
+		
 		auto SWAP = [](int &x, int &y) { int t = x; x = y; y = t; };
 		auto drawline = [&](int sx, int ex, int ny) { for (int i = sx; i <= ex; i++) Draw(i, ny, c, col); };
 		
@@ -548,7 +549,7 @@ public:
 		if (y1>y2) { SWAP(y1, y2); SWAP(x1, x2); }
 		if (y1>y3) { SWAP(y1, y3); SWAP(x1, x3); }
 		if (y2>y3) { SWAP(y2, y3); SWAP(x2, x3); }
-
+		
 		t1x = t2x = x1; y = y1;   // Starting points
 		dx1 = (int)(x2 - x1); if (dx1<0) { dx1 = -dx1; signx1 = -1; }
 		else signx1 = 1;
@@ -566,7 +567,7 @@ public:
 			SWAP(dy2, dx2);
 			changed2 = true;
 		}
-
+		
 		e2 = (int)(dx2 >> 1);
 		// Flat top, just process the second half
 		if (y1 == y2) goto next;

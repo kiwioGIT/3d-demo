@@ -1,0 +1,3 @@
+﻿  Vytváří se kód.
+d:\phy\source.cpp : fatal error C1301: Chyba při přístupu k databázi programu Release\phy.ipdb, neplatný formát. Odstraňte prosím aktuální sestavení a opakujte sestavení.
+LINK : fatal error LNK1257: Generování kódu selhalo.

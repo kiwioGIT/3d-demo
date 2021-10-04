@@ -1,10 +1,32 @@
 ﻿  Source.cpp
-D:\phy\Source.cpp(46,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(47,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(50,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(51,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(102,14): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(114,16): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(115,25): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-D:\phy\Source.cpp(132,27): warning C4244: return: double se převádí na float; může dojít ke ztrátě dat.
-  phy.vcxproj -> D:\phy\Debug\phy.exe
+D:\phy\Source.cpp(129,20): warning C4305: inicializování: zkrácení z: double na: float
+D:\phy\Source.cpp(184,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(185,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(188,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(189,1): warning C4244: +=: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(250,22): warning C4018: <: signed/unsigned – neshoda
+D:\phy\Source.cpp(265,14): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(275,16): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(276,25): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(293,27): warning C4244: return: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(362,22): warning C4018: <: signed/unsigned – neshoda
+D:\phy\Source.cpp(424,186): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(424,155): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(424,123): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(424,92): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(424,60): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(424,29): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,186): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,155): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,123): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,92): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,60): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(428,29): warning C4244: argument: float se převádí na int; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(435,1): warning C4305: inicializování: zkrácení z: double na: float
+D:\phy\Source.cpp(485,1): warning C4305: inicializování: zkrácení z: double na: float
+D:\phy\Source.cpp(561,15): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(562,16): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(563,16): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+D:\phy\Source.cpp(584,22): warning C4018: <: signed/unsigned – neshoda
+D:\phy\Source.cpp(588,22): warning C4018: <: signed/unsigned – neshoda
+D:\phy\Source.cpp(97): warning C4715: mesh::loadobjfile: ne všechny cesty k ovládacím prvkům vrací hodnotu
