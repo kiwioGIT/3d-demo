@@ -160,7 +160,7 @@ class Graph : public olcConsoleGameEngine {
 			mesh m3;
 			m3.pos = vec3d{ 0,-15,110 };
 			m3.size = 5;
-			m3.loadobjfile("rock.obj");
+			m3.loadobjfile("porshe.obj");
 			meshes.push_back(m3);
 			InitializeMesh(0);
 			
